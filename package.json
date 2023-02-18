@@ -1,5 +1,21 @@
 {
     "name": "bestend",
     "author": "domagoj.vukovic <off.vukovic@gmail.com>",
+    "scripts": {
+        "lint": "yarn lint:cspell && yarn lint:prettier && yarn lint:eslint",
+        "lint:cspell": "cspell --no-progress --no-summary '**'",
+        "lint:eslint": "eslint './**/*.{js,ts,tsx}' --quiet --cache",
+        "lint:prettier": "prettier --loglevel warn --check \"./**/*{yaml,yml,json,md,gql,graphql,css}\""
+    },
+    "devDependencies": {
+        "@rimac-technology/style-guide": "^3.0.0",
+        "@types/eslint": "^8.21.1",
+        "@types/node": "^18.14.0",
+        "@types/prettier": "^2.7.2",
+        "cspell": "^6.26.3",
+        "eslint": "^8.34.0",
+        "prettier": "^2.8.4",
+        "typescript": "^4.9.5"
+    },
     "packageManager": "yarn@3.4.1"
 }
