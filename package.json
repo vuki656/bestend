@@ -1,4 +1,5 @@
 {
-  "name": "bestend",
-  "author": "domagoj.vukovic <off.vukovic@gmail.com>"
+    "name": "bestend",
+    "author": "domagoj.vukovic <off.vukovic@gmail.com>",
+    "packageManager": "yarn@3.4.1"
 }
