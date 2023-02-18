@@ -1,0 +1,4 @@
+type Query {
+    user(args: UserArgs!): User
+    users(args: UsersArgs!): [User!]!
+}

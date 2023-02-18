@@ -1,0 +1,2 @@
+-   [ ] Pagination for lists (check github api)
+-   [ ] Explore data sources
