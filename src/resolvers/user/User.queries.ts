@@ -2,8 +2,8 @@ import type { UserModule } from './resolver-types.generated'
 
 const UserQueries: { Query: UserModule.QueryResolvers } = {
     Query: {
-        user: () => {
-            console.log(1)
+        user: (_, __, context) => {
+            console.info(context.user)
 
             return {
                 email: '1',

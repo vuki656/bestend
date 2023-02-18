@@ -1,11 +1,18 @@
 import { startStandaloneServer } from '@apollo/server/standalone'
 
-import { server } from './server'
+import {
+    context,
+    server,
+} from './server'
+import env from './shared/env'
 
 void startStandaloneServer(
     server,
     {
-        listen: { port: 4000 },
+        context,
+        listen: {
+            port: env.APP_PORT,
+        },
     }
 )
     .then((info) => {

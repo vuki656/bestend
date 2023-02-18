@@ -3099,6 +3099,8 @@ __metadata:
     "@types/node": ^18.14.0
     "@types/prettier": ^2.7.2
     cspell: ^6.26.3
+    dotenv: ^16.0.3
+    envalid: ^7.3.1
     eslint: ^8.34.0
     graphql: ^16.6.0
     nodemon: ^2.0.20
@@ -4112,7 +4114,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.0.0":
+"dotenv@npm:^16.0.0, dotenv@npm:^16.0.3":
   version: 16.0.3
   resolution: "dotenv@npm:16.0.3"
   checksum: afcf03f373d7a6d62c7e9afea6328e62851d627a4e73f2e12d0a8deae1cd375892004f3021883f8aec85932cd2834b091f568ced92b4774625b321db83b827f8
@@ -4193,6 +4195,15 @@ __metadata:
   version: 2.2.1
   resolution: "env-paths@npm:2.2.1"
   checksum: 65b5df55a8bab92229ab2b40dad3b387fad24613263d103a97f91c9fe43ceb21965cd3392b1ccb5d77088021e525c4e0481adb309625d0cb94ade1d1fb8dc17e
+  languageName: node
+  linkType: hard
+
+"envalid@npm:^7.3.1":
+  version: 7.3.1
+  resolution: "envalid@npm:7.3.1"
+  dependencies:
+    tslib: 2.3.1
+  checksum: dea10ada13e007f684318474a7dd1b528bbe4ed8ca702918e276d26505bd3807f1e93c4045b7acadd1a4639f207ae4c5375ca0afdff973efab9ea7ead655240f
   languageName: node
   linkType: hard
 
@@ -8697,6 +8708,13 @@ __metadata:
     minimist: ^1.2.6
     strip-bom: ^3.0.0
   checksum: 8afa01c673ebb4782ba53d3a12df97fa837ce524f8ad38ee4e2b2fd57f5ac79abc21c574e9e9eb014d93efe7fe8214001b96233b5c6ea75bd1ea82afe17a4c6d
+  languageName: node
+  linkType: hard
+
+"tslib@npm:2.3.1":
+  version: 2.3.1
+  resolution: "tslib@npm:2.3.1"
+  checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
   languageName: node
   linkType: hard
 
