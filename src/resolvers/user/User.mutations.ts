@@ -1,3 +1,4 @@
+import { hash } from 'bcrypt'
 import orm from '../../shared/orm'
 
 import type { UserModule } from './resolver-types.generated'
@@ -16,12 +17,14 @@ const UserMutations: { Mutation: UserModule.MutationResolvers } = {
                 password,
             } = createUserValidation.parse(variables.input)
 
+            const passwordHash = await hash(password, 10)
+
             return orm.user.create({
                 data: {
                     email,
                     firstName,
                     lastName,
-                    password,
+                    password: passwordHash,
                 },
             })
         },
