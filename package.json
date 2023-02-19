@@ -2,12 +2,13 @@
     "name": "bestend",
     "author": "domagoj.vukovic <off.vukovic@gmail.com>",
     "scripts": {
+        "database:setup": "docker compose run --rm migration",
         "dev": "nodemon",
         "generate": "plop",
         "lint": "yarn lint:cspell && yarn lint:prettier && yarn lint:eslint",
         "lint:cspell": "cspell --no-progress --no-summary '**'",
         "lint:eslint": "eslint './**/*.{js,ts,tsx}' --quiet --cache",
-        "lint:prettier": "prettier --loglevel warn --check './**/*{yaml,yml,json,md,gql,graphql,css}'",
+        "lint:prettier": "prettier --loglevel warn --check './**/*{yaml,yml,json,md,gql,graphql}'",
         "types:generate": "graphql-codegen"
     },
     "dependencies": {

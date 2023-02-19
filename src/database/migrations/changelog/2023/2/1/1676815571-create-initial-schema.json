@@ -1,0 +1,32 @@
+{
+    "databaseChangeLog": [
+        {
+            "logicalFilePath": "1676815571-create-initial-schema.migration.json",
+            "objectQuotingStrategy": "QUOTE_ALL_OBJECTS"
+        },
+        {
+            "changeSet": {
+                "id": "1676815571",
+                "author": "off.vukovic@gmail.com",
+                "comment": "create-initial-schema",
+                "changes": [
+                    {
+                        "changes": [
+                            {
+                                "sql": {
+                                    "sql": "CREATE SCHEMA bestend"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "sql": {
+                            "comment": "Enable use of native UUIDs",
+                            "sql": "CREATE EXTENSION \"uuid-ossp\" SCHEMA public"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
