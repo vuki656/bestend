@@ -15,7 +15,7 @@ export const createUserValidation = z.object({
         .max(300),
     password: z
         .string()
-        .min(1)
+        .min(10)
         .max(300),
 })
 
@@ -37,6 +37,12 @@ export const updateUserValidation = z.object({
         .max(300),
 })
 
+export const deleteUserValidation = z.object({
+    id: z
+        .string()
+        .uuid(),
+})
+
 export const userValidation = z.object({
     id: z
         .string()
@@ -44,7 +50,7 @@ export const userValidation = z.object({
 })
 
 export const usersValidation = z.object({
-    after: z
-        .string()
-        .uuid(),
+    skip: z
+        .number()
+        .int(),
 })

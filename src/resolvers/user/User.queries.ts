@@ -1,3 +1,4 @@
+import orm from '../../shared/orm'
 import type { UserModule } from './resolver-types.generated'
 import {
     usersValidation,
@@ -7,24 +8,18 @@ import {
 const UserQueries: { Query: UserModule.QueryResolvers } = {
     Query: {
         user: (_, variables) => {
-            userValidation.parse(variables.args)
+            const { id } = userValidation.parse(variables.args)
 
-            return {
-                email: '1',
-                firstName: '1',
-                id: '1',
-                lastName: '1',
-            }
+            return orm.user.findUnique({
+                where: {
+                    id,
+                }
+            })
         },
         users: (_, variables) => {
-            usersValidation.parse(variables.args)
+            const { skip } = usersValidation.parse(variables.args)
 
-            return [{
-                email: '1',
-                firstName: '1',
-                id: '1',
-                lastName: '1',
-            }]
+            return orm.user.findMany({ skip })
         },
     },
 }

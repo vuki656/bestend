@@ -11,7 +11,7 @@ const actions = (/** @type { import('plop').NodePlopAPI } */ plop) => {
     plop.setGenerator('Migration', {
         actions: [
             {
-                path: `./src/database/migrations/changelog/${year}/${month}/${day}/${timestamp}-{{description}}.json`,
+                path: `./src/database/migrations/changelog/${year}/${month}/${day}/${timestamp}-{{description}}.migration.json`,
                 templateFile: './__templates__/migration.hbs',
                 type: 'add',
             },

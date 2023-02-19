@@ -1,4 +1,5 @@
 type Mutation {
-    createUser(input: CreateUserInput!): User
-    updateUser(input: UpdateUserInput!): User
+    createUser(input: CreateUserInput!): CreateUserPayload!
+    updateUser(input: UpdateUserInput!): UpdateUserPayload!
+    deleteUser(input: DeleteUserInput!): Boolean!
 }

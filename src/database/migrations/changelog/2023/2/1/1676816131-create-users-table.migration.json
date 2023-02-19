@@ -48,7 +48,8 @@
                                         "name": "email",
                                         "type": "VARCHAR(300)",
                                         "constraints": {
-                                            "nullable": false
+                                            "nullable": false,
+                                            "unique": true
                                         }
                                     }
                                 },
