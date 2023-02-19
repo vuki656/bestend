@@ -1,0 +1,5 @@
+{
+    "extends": "./tsconfig.json",
+    "exclude": ["./__templates__", "./src/**/*.test.ts", "./src/database/migrations", "./src/database/seed"],
+    "include": ["./src/**/*"]
+}
