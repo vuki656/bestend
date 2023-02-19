@@ -1,9 +1,13 @@
 import type { UserModule } from './resolver-types.generated'
+import {
+    createUserValidation,
+    updateUserValidation,
+} from './User.validation'
 
 const UserMutations: { Mutation: UserModule.MutationResolvers } = {
     Mutation: {
-        createUser: () => {
-            console.log(1)
+        createUser: (_, variables) => {
+            createUserValidation.parse(variables.input)
 
             return {
                 email: '1',
@@ -12,8 +16,8 @@ const UserMutations: { Mutation: UserModule.MutationResolvers } = {
                 lastName: '1',
             }
         },
-        updateUser: () => {
-            console.log(2)
+        updateUser: (_, variables) => {
+            updateUserValidation.parse(variables.input)
 
             return {
                 email: '1',

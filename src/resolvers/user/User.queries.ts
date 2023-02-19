@@ -1,9 +1,13 @@
 import type { UserModule } from './resolver-types.generated'
+import {
+    usersValidation,
+    userValidation,
+} from './User.validation'
 
 const UserQueries: { Query: UserModule.QueryResolvers } = {
     Query: {
-        user: (_, __, context) => {
-            console.info(context.user)
+        user: (_, variables) => {
+            userValidation.parse(variables.args)
 
             return {
                 email: '1',
@@ -12,8 +16,8 @@ const UserQueries: { Query: UserModule.QueryResolvers } = {
                 lastName: '1',
             }
         },
-        users: () => {
-            console.log(2)
+        users: (_, variables) => {
+            usersValidation.parse(variables.args)
 
             return [{
                 email: '1',
