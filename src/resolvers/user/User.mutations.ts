@@ -6,8 +6,10 @@ import {
 
 const UserMutations: { Mutation: UserModule.MutationResolvers } = {
     Mutation: {
-        createUser: (_, variables) => {
+        createUser: (_, variables, context) => {
             createUserValidation.parse(variables.input)
+
+            context.logger.info('Hello')
 
             return {
                 email: '1',

@@ -8,6 +8,7 @@ import {
     server,
 } from './server'
 import env from './shared/env'
+import { logger } from './shared/logger'
 
 void startStandaloneServer(
     server,
@@ -19,8 +20,11 @@ void startStandaloneServer(
     }
 )
     .then((info) => {
-        console.info(`Server started on: ${info.url}`)
+        logger.info(`Server started on: ${info.url}`)
     })
     .catch((error: unknown) => {
-        console.error(error)
+        logger.info({
+            error,
+            message: 'Server crashed when starting',
+        })
     })

@@ -4,5 +4,5 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import env from '../../shared/env'
 
 export const ApolloPluginLandingPage = env.isProduction
-    ? ApolloServerPluginLandingPageDisabled
-    : ApolloServerPluginLandingPageLocalDefault
+    ? ApolloServerPluginLandingPageDisabled()
+    : ApolloServerPluginLandingPageLocalDefault()
