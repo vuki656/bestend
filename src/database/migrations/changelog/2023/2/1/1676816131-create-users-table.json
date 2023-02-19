@@ -1,0 +1,81 @@
+{
+    "databaseChangeLog": [
+        {
+            "logicalFilePath": "1676816131-create-users-table.migration.json",
+            "objectQuotingStrategy": "QUOTE_ALL_OBJECTS"
+        },
+        {
+            "changeSet": {
+                "id": "1676816131",
+                "author": "off.vukovic@gmail.com",
+                "comment": "create-users-table",
+                "changes": [
+                    {
+                        "createTable": {
+                            "tableName": "users",
+                            "columns": [
+                                {
+                                    "column": {
+                                        "name": "id",
+                                        "type": "uuid",
+                                        "defaultValueComputed": "public.uuid_generate_v4()",
+                                        "constraints": {
+                                            "nullable": false,
+                                            "primaryKey": true
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "first_name",
+                                        "type": "VARCHAR(300)",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "last_name",
+                                        "type": "VARCHAR(300)",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "email",
+                                        "type": "VARCHAR(300)",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "password",
+                                        "type": "VARCHAR(300)",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "created_at",
+                                        "type": "datetime",
+                                        "defaultValueComputed": "timezone('utc', NOW())",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

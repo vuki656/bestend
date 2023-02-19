@@ -2,6 +2,7 @@
     "name": "bestend",
     "author": "domagoj.vukovic <off.vukovic@gmail.com>",
     "scripts": {
+        "database:migrate": "docker compose run --no-deps --rm migration",
         "database:setup": "docker compose run --rm migration",
         "dev": "nodemon",
         "generate": "plop",
@@ -9,11 +10,14 @@
         "lint:cspell": "cspell --no-progress --no-summary '**'",
         "lint:eslint": "eslint './**/*.{js,ts,tsx}' --quiet --cache",
         "lint:prettier": "prettier --loglevel warn --check './**/*{yaml,yml,json,md,gql,graphql}'",
+        "orm:generate": "prisma generate",
+        "orm:sync": "prisma db pull && prettier --write './src/database/schema.prisma'",
         "types:generate": "graphql-codegen"
     },
     "dependencies": {
         "@apollo/server": "^4.4.0",
         "@paralleldrive/cuid2": "^2.1.0",
+        "@prisma/client": "^4.10.1",
         "dayjs": "^1.11.7",
         "dotenv": "^16.0.3",
         "envalid": "^7.3.1",
@@ -37,8 +41,13 @@
         "pino-pretty": "^9.3.0",
         "plop": "^3.1.2",
         "prettier": "^2.8.4",
+        "prisma": "^4.10.1",
         "ts-node": "^10.9.1",
         "typescript": "^4.9.5"
     },
-    "packageManager": "yarn@3.4.1"
+    "packageManager": "yarn@3.4.1",
+    "prisma": {
+        "schema": "./src/database/schema.prisma",
+        "seed": "ts-node ./src/database/seed/index.ts"
+    }
 }
