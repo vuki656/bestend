@@ -1,4 +1,5 @@
 import orm from '../../shared/orm'
+
 import type { UserModule } from './resolver-types.generated'
 import {
     usersValidation,
@@ -13,10 +14,10 @@ const UserQueries: { Query: UserModule.QueryResolvers } = {
             return orm.user.findUnique({
                 where: {
                     id,
-                }
+                },
             })
         },
-        users: (_, variables) => {
+        users: async (_, variables) => {
             const { skip } = usersValidation.parse(variables.args)
 
             return orm.user.findMany({ skip })

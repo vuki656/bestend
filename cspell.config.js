@@ -13,6 +13,10 @@ const config = {
         'liquibase',
         'healthcheck',
         'ossp',
+        'varchar',
+        'datetime',
+        'dbgenerated',
+        'datasource',
     ],
     useGitignore: true,
 }

@@ -1,4 +1,5 @@
 import { hash } from 'bcrypt'
+
 import orm from '../../shared/orm'
 
 import type { UserModule } from './resolver-types.generated'
@@ -33,6 +34,17 @@ const UserMutations: { Mutation: UserModule.MutationResolvers } = {
                 user: createdUser,
             }
         },
+        deleteUser: async (_, variables) => {
+            const { id } = deleteUserValidation.parse(variables.input)
+
+            await orm.user.delete({
+                where: {
+                    id,
+                },
+            })
+
+            return true
+        },
         updateUser: async (_, variables) => {
             const {
                 email,
@@ -42,30 +54,19 @@ const UserMutations: { Mutation: UserModule.MutationResolvers } = {
             } = updateUserValidation.parse(variables.input)
 
             const updatedUser = await orm.user.update({
+                data: {
+                    email,
+                    firstName,
+                    lastName,
+                },
                 where: {
                     id,
                 },
-                data: {
-                    lastName,
-                    firstName,
-                    email
-                }
             })
 
             return {
-                user: updatedUser
+                user: updatedUser,
             }
-        },
-        deleteUser: async (_, variables) => {
-            const { id } = deleteUserValidation.parse(variables.input)
-
-            orm.user.delete({
-                where: {
-                    id,
-                }
-            })
-
-            return true
         },
     },
 }

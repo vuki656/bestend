@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/require-await -- Apollo plugin definition requires every step to be async */
+
 import type { ApolloServerPlugin } from '@apollo/server'
 import { createId } from '@paralleldrive/cuid2'
 
