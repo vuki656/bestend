@@ -4,15 +4,15 @@
     "scripts": {
         "database:migrate": "docker compose run --no-deps --rm migration",
         "database:setup": "docker compose run --rm migration",
+        "database:sync": "prisma db pull && prettier --write './src/database/schema.prisma'",
         "dev": "nodemon",
-        "generate": "plop",
+        "generate:orm": "prisma generate",
+        "generate:template": "plop",
+        "generate:types": "graphql-codegen",
         "lint": "yarn lint:cspell && yarn lint:prettier && yarn lint:eslint",
         "lint:cspell": "cspell --no-progress --no-summary '**'",
         "lint:eslint": "eslint './**/*.{js,ts,tsx}' --quiet --cache",
-        "lint:prettier": "prettier --loglevel warn --check './**/*{yaml,yml,json,md,gql,graphql}'",
-        "orm:generate": "prisma generate",
-        "orm:sync": "prisma db pull && prettier --write './src/database/schema.prisma'",
-        "types:generate": "graphql-codegen"
+        "lint:prettier": "prettier --loglevel warn --check './**/*{yaml,yml,json,md,gql,graphql}'"
     },
     "dependencies": {
         "@apollo/server": "^4.4.0",
