@@ -17,6 +17,7 @@ const config = {
         'datetime',
         'dbgenerated',
         'datasource',
+        'dmmf',
     ],
     useGitignore: true,
 }

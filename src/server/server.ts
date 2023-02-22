@@ -14,7 +14,7 @@ export const server = new ApolloServer<Context>({
     logger,
     plugins: [
         ApolloPluginLandingPage,
-        ApolloPluginLogger
+        ApolloPluginLogger,
     ],
     resolvers,
     typeDefs,
