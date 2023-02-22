@@ -2,7 +2,6 @@
     "name": "bestend",
     "author": "domagoj.vukovic <off.vukovic@gmail.com>",
     "scripts": {
-        "build": "webpack",
         "database:migrate": "docker compose run --no-deps --rm migration",
         "database:setup": "docker compose run --rm migration",
         "database:sync": "prisma db pull && prettier --write './src/database/schema.prisma'",
@@ -13,8 +12,7 @@
         "lint": "yarn lint:cspell && yarn lint:prettier && yarn lint:eslint",
         "lint:cspell": "cspell --no-progress --no-summary '**'",
         "lint:eslint": "eslint './**/*.{js,ts,tsx}' --quiet --cache",
-        "lint:prettier": "prettier --loglevel warn --check './**/*{yaml,yml,json,md,gql,graphql}'",
-        "start": "node './dist/main.js'"
+        "lint:prettier": "prettier --loglevel warn --check './**/*{yaml,yml,json,md,gql,graphql}'"
     },
     "dependencies": {
         "@apollo/server": "^4.4.0",
@@ -39,7 +37,6 @@
         "@types/eslint": "^8.21.1",
         "@types/node": "^18.14.0",
         "@types/prettier": "^2.7.2",
-        "@types/webpack-node-externals": "^3.0.0",
         "cspell": "^6.26.3",
         "eslint": "^8.34.0",
         "nodemon": "^2.0.20",
@@ -47,12 +44,8 @@
         "plop": "^3.1.2",
         "prettier": "^2.8.4",
         "prisma": "^4.10.1",
-        "ts-loader": "^9.4.2",
         "ts-node": "^10.9.1",
-        "typescript": "^4.9.5",
-        "webpack": "^5.75.0",
-        "webpack-cli": "^5.0.1",
-        "webpack-node-externals": "^3.0.0"
+        "typescript": "^4.9.5"
     },
     "packageManager": "yarn@3.4.1",
     "prisma": {
