@@ -7,7 +7,7 @@
 
 # BACKLOG
 
--   [ ] Build - not working because schema resolution path doesn't exist when built
+-   [ ] Reconsider mutation/query file separation. Put together? 
 -   [ ] Login
 -   [ ] Pagination for lists (check github api) or something more simple ???
 -   [ ] AUTH

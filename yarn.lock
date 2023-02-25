@@ -1699,6 +1699,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-codegen/typescript-operations@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@graphql-codegen/typescript-operations@npm:3.0.1"
+  dependencies:
+    "@graphql-codegen/plugin-helpers": ^4.1.0
+    "@graphql-codegen/typescript": ^3.0.1
+    "@graphql-codegen/visitor-plugin-common": 3.0.1
+    auto-bind: ~4.0.0
+    tslib: ~2.5.0
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: ddbc35d97b87a69bd1090cca23abcb6265489956b9a29fdbdbdc440630eacff0d71173d063c4afbb6328d04e4d9b732b9e5042a9a75ced38f3de4da0f2b38c74
+  languageName: node
+  linkType: hard
+
 "@graphql-codegen/typescript-resolvers@npm:^3.1.0":
   version: 3.1.0
   resolution: "@graphql-codegen/typescript-resolvers@npm:3.1.0"
@@ -4302,6 +4317,7 @@ __metadata:
     "@apollo/server": ^4.4.0
     "@graphql-codegen/cli": ^3.2.1
     "@graphql-codegen/graphql-modules-preset": ^3.1.0
+    "@graphql-codegen/typescript-operations": ^3.0.1
     "@graphql-codegen/typescript-resolvers": ^3.1.0
     "@graphql-tools/load-files": ^6.6.1
     "@graphql-tools/merge": ^8.3.18
@@ -4326,7 +4342,7 @@ __metadata:
     graphql-tag: ^2.12.6
     jest: ^29.4.3
     nodemon: ^2.0.20
-    pino: ^8.10.0
+    pino: ^8.11.0
     pino-pretty: ^9.4.0
     plop: ^3.1.2
     prettier: ^2.8.4
@@ -10181,9 +10197,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino@npm:^8.10.0":
-  version: 8.10.0
-  resolution: "pino@npm:8.10.0"
+"pino@npm:^8.11.0":
+  version: 8.11.0
+  resolution: "pino@npm:8.11.0"
   dependencies:
     atomic-sleep: ^1.0.0
     fast-redact: ^3.1.1
@@ -10198,7 +10214,7 @@ __metadata:
     thread-stream: ^2.0.0
   bin:
     pino: bin.js
-  checksum: c8b87e72a2863e9d2c94fdfa61aec8c7fa782320669df40ce5b9281473324987a227710a0bf067d63aed821dfeeeea3665db4eecece273a60c5d2d58b011a4da
+  checksum: 1bcc2b9b448ec9ccef4ea189d5db7d1e0e085f6cd4d7395d087998d90186850ab176edf32a179562337a557aa51eb551ff6318a40af7cdb5963b168f87d35aa8
   languageName: node
   linkType: hard
 

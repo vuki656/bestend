@@ -1,7 +1,7 @@
 import { gql } from 'graphql-tag'
 
 export const USER_PAYLOAD = gql`
-    fragment UserPayload on UserType {
+    fragment UserPayload on User {
         id
         firstName
         lastName

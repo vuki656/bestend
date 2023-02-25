@@ -1,5 +1,7 @@
+import { server } from '../../../server'
 import { wipeDatabase } from '../../../shared/wipeDatabase'
 
+// TODO: auth tests for each thing?
 describe('User resolver', () => {
     beforeEach(async () => {
         await wipeDatabase()
@@ -28,11 +30,13 @@ describe('User resolver', () => {
     //     it('should delete user', async () => { })
     // })
     //
-    // describe('when createUser mutation is called', () => {
-    //     it('should throw an error if user already exists', async () => { })
-    //
-    //     it('should create user', async () => { })
-    // })
+    describe('when createUser mutation is called', () => {
+        it('should throw an error if user already exists', async () => { })
+
+        it('should create user', async () => {
+            server.executeOperation<CreateUser()
+        })
+    })
     //
     // describe('when login mutation is called', () => {
     //     it('should throw an error when sent token is not holding an object', async () => { })
