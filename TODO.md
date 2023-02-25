@@ -9,6 +9,7 @@
 
 -   [ ] Reconsider mutation/query file separation. Put together?
 -   [ ] Login
+-   [ ] Should orm errors be handled?
 -   [ ] Pagination for lists (check github api) or something more simple ???
 -   [ ] AUTH
 -   [ ] Explore data sources

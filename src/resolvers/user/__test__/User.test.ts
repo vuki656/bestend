@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
 
 import { server } from '../../../server'
+import orm from '../../../shared/orm'
 import type {
     CreateUserMutation,
     CreateUserMutationVariables,
@@ -41,7 +42,39 @@ describe('User resolver', () => {
     })
 
     describe('when createUser mutation is called', () => {
-        it.todo('should throw an error if user already exists')
+        it('should throw an error if user by the same email already exists', async () => {
+            const EMAIL = faker.internet.email()
+
+            await orm.user.create({
+                data: {
+                    email: EMAIL,
+                    firstName: faker.name.firstName(),
+                    lastName: faker.name.lastName(),
+                    password: faker.internet.password(),
+                },
+            })
+
+            const response = await server.executeOperation<
+                CreateUserMutation,
+                CreateUserMutationVariables
+            >({
+                query: CREATE_USER,
+                variables: {
+                    input: {
+                        email: EMAIL,
+                        firstName: faker.name.firstName(),
+                        lastName: faker.name.lastName(),
+                        password: faker.internet.password(),
+                    },
+                },
+            })
+
+            if (response.body.kind === 'incremental') {
+                throw new Error('Wrong response type')
+            }
+
+            expect(response.body.singleResult.errors?.[0]?.message).toContain('Unique constraint failed on the fields: (`email`)')
+        })
 
         it('should create user', async () => {
             const input: CreateUserInput = {
@@ -51,7 +84,10 @@ describe('User resolver', () => {
                 password: faker.internet.password(),
             }
 
-            const response = await server.executeOperation<CreateUserMutation, CreateUserMutationVariables>({
+            const response = await server.executeOperation<
+                CreateUserMutation,
+                CreateUserMutationVariables
+            >({
                 query: CREATE_USER,
                 variables: {
                     input,
