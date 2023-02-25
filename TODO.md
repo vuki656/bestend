@@ -7,7 +7,7 @@
 
 # BACKLOG
 
--   [ ] Reconsider mutation/query file separation. Put together? 
+-   [ ] Reconsider mutation/query file separation. Put together?
 -   [ ] Login
 -   [ ] Pagination for lists (check github api) or something more simple ???
 -   [ ] AUTH

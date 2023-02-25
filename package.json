@@ -10,12 +10,12 @@
         "dev": "nodemon",
         "generate:orm": "prisma generate",
         "generate:template": "plop",
-        "generate:test-types": "graphql-codegen --config='./codegen.test.ts'",
+        "generate:test-types": "graphql-codegen --config='./codegen.tests.ts'",
         "generate:types": "graphql-codegen --config='./codegen.ts'",
         "lint": "yarn lint:cspell && yarn lint:prettier && yarn lint:eslint",
         "lint:cspell": "cspell --no-progress --no-summary '**'",
         "lint:eslint": "eslint './**/*.{js,ts,tsx}' --quiet --cache",
-        "lint:prettier": "prettier --loglevel warn --write './**/*{yaml,yml,json,md,gql,graphql}'",
+        "lint:prettier": "prettier --loglevel warn --check './**/*{yaml,yml,json,md,gql,graphql}'",
         "start": "node 'dist/main.js'",
         "test": "jest"
     },
@@ -32,6 +32,7 @@
         "zod": "^3.20.6"
     },
     "devDependencies": {
+        "@faker-js/faker": "^7.6.0",
         "@graphql-codegen/cli": "^3.2.1",
         "@graphql-codegen/graphql-modules-preset": "^3.1.0",
         "@graphql-codegen/typescript-operations": "^3.0.1",

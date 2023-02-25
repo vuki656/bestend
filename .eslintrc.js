@@ -6,6 +6,12 @@ module.exports = {
         'dist',
         'node_modules',
     ],
+    overrides: [
+        {
+            extends: [require.resolve('@rimac-technology/style-guide/eslint/jest')],
+            files: ['**/*.test.ts'],
+        },
+    ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         project: './tsconfig.lint.json',

@@ -1,19 +1,19 @@
 import type { CodegenConfig } from '@graphql-codegen/cli'
 
 const config: CodegenConfig = {
-    overwrite: true,
+    documents: './src/resolvers/**/__test__/*.gql.ts',
     generates: {
         './src/shared/types/test-types.generated.ts': {
+            hooks: {
+                afterAllFileWrite: 'prettier --write',
+            },
             plugins: [
                 'typescript',
                 'typescript-operations',
             ],
-            hooks: {
-                afterAllFileWrite: "prettier --write"
-            }
         },
     },
-    documents: './src/resolvers/**/__test__/*.gql.ts',
+    overwrite: true,
     schema: './src/resolvers/**/*.graphql',
 }
 

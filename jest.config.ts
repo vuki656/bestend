@@ -1,7 +1,7 @@
 import type { JestConfigWithTsJest } from 'ts-jest'
 
 const config: JestConfigWithTsJest = {
-    // globalSetup: './setup.ts',
+    globalSetup: './setup.ts',
     // globalTeardown: './teardown.ts',
     preset: 'ts-jest',
     // setupFilesAfterEnv: ['./fileSetup.ts'],
