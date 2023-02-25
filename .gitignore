@@ -13,6 +13,7 @@ node_modules
 
 # Generated Files
 *.generated.*
+schema.graphql
 
 # Env
 .env
