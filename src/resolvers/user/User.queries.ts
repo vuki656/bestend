@@ -20,7 +20,9 @@ const UserQueries: { Query: UserModule.QueryResolvers } = {
         users: async (_, variables) => {
             const { skip } = usersValidation.parse(variables.args)
 
-            return orm.user.findMany({ skip })
+            return orm.user.findMany({ 
+                skip: skip ?? undefined,
+            })
         },
     },
 }

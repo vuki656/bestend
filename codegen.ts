@@ -17,6 +17,9 @@ const config: CodegenConfig = {
                 filename: 'resolver-types.generated.ts',
                 useGraphQLModules: false,
             },
+            hooks: {
+                afterOneFileWrite: 'prettier --write',
+            },
         },
     },
     schema: './src/resolvers/**/*.graphql',

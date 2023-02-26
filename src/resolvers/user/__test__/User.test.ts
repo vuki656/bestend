@@ -12,6 +12,8 @@ import type {
     UpdateUserMutationVariables,
     UserQuery,
     UserQueryVariables,
+    UsersQuery,
+    UsersQueryVariables,
 } from '../../../shared/types/test-types.generated'
 import type {
     CreateUserInput,
@@ -23,7 +25,10 @@ import {
     DELETE_USER,
     UPDATE_USER,
 } from './mutations.gql'
-import { USER } from './queries.gql'
+import {
+    USER,
+    USERS,
+} from './queries.gql'
 
 // TODO: auth tests for each thing?
 describe('User resolver', () => {
@@ -54,7 +59,7 @@ describe('User resolver', () => {
                 variables: {
                     args: {
                         id: existingUser.id,
-                    }
+                    },
                 },
             })
 
@@ -74,7 +79,7 @@ describe('User resolver', () => {
                 variables: {
                     args: {
                         id: faker.datatype.uuid(),
-                    }
+                    },
                 },
             })
 
@@ -82,12 +87,38 @@ describe('User resolver', () => {
                 throw new Error('Wrong response type')
             }
 
-            expect(response.body.singleResult.errors?.[0]?.message).toContain("No User found")
+            expect(response.body.singleResult.errors?.[0]?.message).toContain('No User found')
         })
     })
 
     describe('when users query is called', () => {
-        it.todo('should return users')
+        it('should return users', async () => {
+            const createUserActions = [...new Array(20)].map(() => {
+                return orm.user.create({
+                    data: {
+                        email: faker.internet.email(),
+                        firstName: faker.name.firstName(),
+                        lastName: faker.name.lastName(),
+                        password: faker.internet.password(),
+                    },
+                })
+            })
+
+            const existingUsers = await Promise.all(createUserActions)
+
+            const response = await server.executeOperation<
+                UsersQuery,
+                UsersQueryVariables // TODO: vars shouldn't be needed
+            >({ query: USERS, variables: { args: {} } })
+
+            if (response.body.kind === 'incremental') {
+                throw new Error('Wrong response type')
+            }
+
+            console.log(response.body.singleResult)
+
+            expect(response.body.singleResult.data?.users).toHaveLength(existingUsers.length)
+        })
     })
 
     describe('when update user mutation is called', () => {
@@ -101,7 +132,7 @@ describe('User resolver', () => {
                 },
             })
 
-            const input: UpdateUserInput = {
+            const input: Omit<UpdateUserInput, 'id'> = {
                 email: faker.internet.email(),
                 firstName: faker.name.firstName(),
                 lastName: faker.name.lastName(),

@@ -3,5 +3,4 @@ type User {
     firstName: String!
     lastName: String!
     email: String!
-    createdAt: String!
 }

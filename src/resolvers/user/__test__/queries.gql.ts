@@ -10,3 +10,12 @@ export const USER = gql`
     }
     ${USER_PAYLOAD}
 `
+
+export const USERS = gql`
+    query Users($args: UsersArgs) {
+        users(args: $args) {
+            ...UserPayload
+        }
+    }
+    ${USER_PAYLOAD}
+`

@@ -52,5 +52,6 @@ export const userValidation = z.object({
 export const usersValidation = z.object({
     skip: z
         .number()
-        .int(),
+        .int()
+        .nullish(),
 })
