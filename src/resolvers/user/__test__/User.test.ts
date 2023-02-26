@@ -6,7 +6,7 @@ import type {
     CreateUserMutation,
     CreateUserMutationVariables,
 } from '../../../shared/types/test-types.generated'
-import { wipeDatabase } from '../../../shared/wipeDatabase'
+import { wipeDatabase } from '../../../shared/tests'
 import type { CreateUserInput } from '../../graphql-types.generated'
 
 import { CREATE_USER } from './mutations.gql'
