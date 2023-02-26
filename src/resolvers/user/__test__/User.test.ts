@@ -10,6 +10,8 @@ import type {
     DeleteUserMutationVariables,
     UpdateUserMutation,
     UpdateUserMutationVariables,
+    UserQuery,
+    UserQueryVariables,
 } from '../../../shared/types/test-types.generated'
 import type {
     CreateUserInput,
@@ -21,6 +23,7 @@ import {
     DELETE_USER,
     UPDATE_USER,
 } from './mutations.gql'
+import { USER } from './queries.gql'
 
 // TODO: auth tests for each thing?
 describe('User resolver', () => {
@@ -33,9 +36,54 @@ describe('User resolver', () => {
     })
 
     describe('when user query is called', () => {
-        it.todo('should return a user')
+        it('should return a user', async () => {
+            const existingUser = await orm.user.create({
+                data: {
+                    email: faker.internet.email(),
+                    firstName: faker.name.firstName(),
+                    lastName: faker.name.lastName(),
+                    password: faker.internet.password(),
+                },
+            })
 
-        it.todo('should throw if no user is found')
+            const response = await server.executeOperation<
+                UserQuery,
+                UserQueryVariables
+            >({
+                query: USER,
+                variables: {
+                    args: {
+                        id: existingUser.id,
+                    }
+                },
+            })
+
+            if (response.body.kind === 'incremental') {
+                throw new Error('Wrong response type')
+            }
+
+            expect(existingUser).toMatchObject(response.body.singleResult.data?.user ?? {})
+        })
+
+        it('should throw if no user is found', async () => {
+            const response = await server.executeOperation<
+                UserQuery,
+                UserQueryVariables
+            >({
+                query: USER,
+                variables: {
+                    args: {
+                        id: faker.datatype.uuid(),
+                    }
+                },
+            })
+
+            if (response.body.kind === 'incremental') {
+                throw new Error('Wrong response type')
+            }
+
+            expect(response.body.singleResult.errors?.[0]?.message).toContain("No User found")
+        })
     })
 
     describe('when users query is called', () => {

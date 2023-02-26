@@ -11,7 +11,7 @@ const UserQueries: { Query: UserModule.QueryResolvers } = {
         user: (_, variables) => {
             const { id } = userValidation.parse(variables.args)
 
-            return orm.user.findUnique({
+            return orm.user.findUniqueOrThrow({
                 where: {
                     id,
                 },
