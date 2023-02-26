@@ -1,4 +1,4 @@
-import orm from './orm'
+import orm from "../orm"
 
 // TODO: this should not be included in bundle
 export const wipeDatabase = async () => {

@@ -12,3 +12,9 @@ export const CREATE_USER = gql`
     }
     ${USER_PAYLOAD}
 `
+
+export const DELETE_USER = gql`
+    mutation DeleteUser($input: DeleteUserInput!) {
+        deleteUser(input: $input)
+    }
+`

@@ -5,11 +5,13 @@ import orm from '../../../shared/orm'
 import type {
     CreateUserMutation,
     CreateUserMutationVariables,
+    DeleteUserMutation,
+    DeleteUserMutationVariables,
 } from '../../../shared/types/test-types.generated'
 import { wipeDatabase } from '../../../shared/tests'
 import type { CreateUserInput } from '../../graphql-types.generated'
 
-import { CREATE_USER } from './mutations.gql'
+import { CREATE_USER, DELETE_USER } from './mutations.gql'
 
 // TODO: auth tests for each thing?
 describe('User resolver', () => {
@@ -38,7 +40,34 @@ describe('User resolver', () => {
     })
 
     describe('when deleteUser mutation is called', () => {
-        it.todo('should delete user')
+        it('should delete user', async () => {
+            const existingUser = await orm.user.create({
+                data: {
+                    email: faker.internet.email(),
+                    firstName: faker.name.firstName(),
+                    lastName: faker.name.lastName(),
+                    password: faker.internet.password(),
+                },
+            })
+
+            const response = await server.executeOperation<
+                DeleteUserMutation,
+                DeleteUserMutationVariables
+            >({
+                query: DELETE_USER,
+                variables: {
+                    input: {
+                        id: existingUser.id,
+                    },
+                },
+            })
+
+            if (response.body.kind === 'incremental') {
+                throw new Error('Wrong response type')
+            }
+
+            expect(response.body.singleResult.data?.deleteUser).toBe(true)
+        })
     })
 
     describe('when createUser mutation is called', () => {
