@@ -2,16 +2,25 @@ import { faker } from '@faker-js/faker'
 
 import { server } from '../../../server'
 import orm from '../../../shared/orm'
+import { wipeDatabase } from '../../../shared/tests'
 import type {
     CreateUserMutation,
     CreateUserMutationVariables,
     DeleteUserMutation,
     DeleteUserMutationVariables,
+    UpdateUserMutation,
+    UpdateUserMutationVariables,
 } from '../../../shared/types/test-types.generated'
-import { wipeDatabase } from '../../../shared/tests'
-import type { CreateUserInput } from '../../graphql-types.generated'
+import type {
+    CreateUserInput,
+    UpdateUserInput,
+} from '../../graphql-types.generated'
 
-import { CREATE_USER, DELETE_USER } from './mutations.gql'
+import {
+    CREATE_USER,
+    DELETE_USER,
+    UPDATE_USER,
+} from './mutations.gql'
 
 // TODO: auth tests for each thing?
 describe('User resolver', () => {
@@ -29,14 +38,72 @@ describe('User resolver', () => {
         it.todo('should throw if no user is found')
     })
 
-    describe('when update user mutation is called', () => {
-        it.todo('should update that user')
-
-        it.todo('should return an error if user not found')
-    })
-
     describe('when users query is called', () => {
         it.todo('should return users')
+    })
+
+    describe('when update user mutation is called', () => {
+        it('should update that user', async () => {
+            const existingUser = await orm.user.create({
+                data: {
+                    email: faker.internet.email(),
+                    firstName: faker.name.firstName(),
+                    lastName: faker.name.lastName(),
+                    password: faker.internet.password(),
+                },
+            })
+
+            const input: UpdateUserInput = {
+                email: faker.internet.email(),
+                firstName: faker.name.firstName(),
+                lastName: faker.name.lastName(),
+            }
+
+            const response = await server.executeOperation<
+                UpdateUserMutation,
+                UpdateUserMutationVariables
+            >({
+                query: UPDATE_USER,
+                variables: {
+                    input: {
+                        id: existingUser.id,
+                        ...input,
+                    },
+                },
+            })
+
+            if (response.body.kind === 'incremental') {
+                throw new Error('Wrong response type')
+            }
+
+            expect(response.body.singleResult.data?.updateUser.user).toMatchObject({
+                id: existingUser.id,
+                ...input,
+            })
+        })
+
+        it('should return an error if user not found', async () => {
+            const response = await server.executeOperation<
+                UpdateUserMutation,
+                UpdateUserMutationVariables
+            >({
+                query: UPDATE_USER,
+                variables: {
+                    input: {
+                        email: faker.internet.email(),
+                        firstName: faker.name.firstName(),
+                        id: faker.datatype.uuid(),
+                        lastName: faker.name.lastName(),
+                    },
+                },
+            })
+
+            if (response.body.kind === 'incremental') {
+                throw new Error('Wrong response type')
+            }
+
+            expect(response.body.singleResult.errors?.[0]?.message).toContain('Record to update not found')
+        })
     })
 
     describe('when deleteUser mutation is called', () => {
